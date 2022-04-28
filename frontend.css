@@ -1,0 +1,119 @@
+body {
+     text-align: center;
+     /* display: flex;
+     flex-wrap: wrap; */
+     justify-content: center;
+     align-content: center;
+     background-color: black;
+     background-image: url(/pixel-jeff-mario.gif);
+     background-size: 100vw 100vh;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     
+     }
+
+img {
+     display: grid;
+     height: 300px;
+     width: 300px;
+     padding: 5px;
+     text-align: center;
+     justify-content: center;
+     scroll-behavior: smooth;
+}
+
+.resultsContainer {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     margin: 10px;
+}
+
+.game-card {
+     display: grid;
+     text-align: center;
+     padding-bottom: 10px;
+     align-content: center;
+     justify-content: center;
+     margin: 10px;
+     border: 2px solid white;
+     border-radius: 20px;
+     width: 400px;
+     height: auto;
+     background-color: black;
+}
+
+text {
+     display: grid;
+     text-align: center;
+     justify-content: center;
+     margin-bottom: 0px;
+     max-width: 300px;
+     align-items: center;
+     color: white;
+      
+} 
+
+#main {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-between;
+     margin: 10px;
+     padding: 10px;
+     background-color: black;
+     border-radius: 20px;
+}
+
+.card-title {
+     color: black;
+}
+
+h1 {
+     font-family: 'Press Start 2P', cursive;
+     /* font-family: 'Righteous', cursive; */
+     color: white;
+     font-size: 35px;
+     max-height: auto;
+}
+h2 {
+     font-family: 'Righteous', cursive;
+     display: grid;
+     max-width: 300px;
+     text-align: center;
+     justify-content: center;
+     color: white;
+}
+
+h3 {
+     font-family: 'Righteous', cursive;
+     display: grid;
+     margin: 5px;
+     color: white;
+}
+
+input {
+     font-family: 'Righteous', cursive;
+     width: 500px;
+     height: 25px;
+     border-radius: 20px;
+     font-size: 20px;
+     font-weight: bold;
+}
+.buttonsContainer{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+}
+
+button {
+     font-family: 'Righteous', cursive;
+     border-radius: 20px;
+     height: 30px;
+     width: 200px;
+     background-color: black;
+     color: white;
+     font-weight: bold;
+     font-size: 17px;
+     margin: 10px;
+}
