@@ -6,13 +6,19 @@ const $search = $("#submit")
 
 let $buttonsContainer = $("<div class='buttonsContainer'></div>")
 $buttonsContainer.appendTo($body)
+
 let $homeBtn = $("<button class='homeBtn'>Home</button>")
 $homeBtn.appendTo($buttonsContainer)
+
 let $upcomingReleasesBtn = $("<button>Upcoming Releases</button>")
 $upcomingReleasesBtn.appendTo($buttonsContainer)
+
 let $latestReleasesBtn = $("<button>Latest Releases</button>")
 $latestReleasesBtn.appendTo($buttonsContainer)
 
+
+
+// ============= Welcome Message ========================
 let $welcomeMessageContainer = $("<div class='welcomeMessageContainer'></div>")
 $welcomeMessageContainer.appendTo($body)
 let $welcomeMessage = $("<div class='welcomeMessage'></div>")
@@ -21,17 +27,22 @@ $welcomeMessage.appendTo($welcomeMessageContainer)
 let $welcomeMessageImg = $("<img =class'welcomeMessageImg'></img>")
 $welcomeMessageImg.attr("src", "pic.jpg")
 $welcomeMessageImg.appendTo($welcomeMessage)
+//============= Welcome Message ==========================
+
 
 let $resultsContainer = $("<div class='resultsContainer'></div>")
 $resultsContainer.appendTo($body)
 
+
+
+//home button to reload the page
 $homeBtn.click(function(){
      window.location.reload()
-     })
+})
 
 
      
-//============================ SEARCH =========================
+//============================ Search Feature =========================
 $search.click(function(){
      var $game = $("input[name= 'search']").val()
      console.log($game)
@@ -40,6 +51,8 @@ $.get(`https://api.rawg.io/api/games?search=${$game}&search_precise=true&key=847
 // console.log(data.results)
 $(".game-card").remove();
 $(".welcomeMessage").remove();
+
+console.log(data.results)
 
 let $results = data.results
 
@@ -73,6 +86,7 @@ function listGenre() {
      // $container.appendTo($resultsContainer)
      $container.attr("class","game-card")
      $container.appendTo($resultsContainer)
+     
      const $heading = $("<h2 class='game-title'></h2>");
      const $image = $("<img class='game-image'></ul>");
      const $platHeading = $("<h3 class='platforms'>Platform(s):</h3>")
@@ -81,6 +95,7 @@ function listGenre() {
      const $genres = $("<text></text>")
      const $releaseDate = $(`<text>Release Date: ${elem.released}</text>`)
      const $rating = $(`<text>Rating: ${elem.rating}/ 5</text>`)
+     
      $heading.text(elem.name)
      $heading.attr("href",)
      $heading.appendTo($container)  
@@ -94,12 +109,8 @@ function listGenre() {
      $platHeading.appendTo($container)
      $platforms.text(listPlat())
      $platforms.appendTo($container)
-// console.log(elem.name)
-})
-})
-// .then(res => res.json())
-// .then(data => console.log(data))
-
+    })
+  })
 })
 //=======================  SEARCH  ==========================
 
@@ -107,25 +118,27 @@ function listGenre() {
 
 //====================  SHOW UPCOMING RELEASES  ================
 $upcomingReleasesBtn.click(function(){
+
      $.get(`https://api.rawg.io/api/games?dates=2022-04-30,2022-12-30&ordering=-added&key=8470d1cdee404549ac2275b1a249b140`, function(data) {
-          $(".game-card").remove();
-          $(".welcomeMessage").remove();
+     
+     $(".game-card").remove();
+     $(".welcomeMessage").remove();
      
      // console.log(data.results)
 
-          let $results = data.results
+     let $results = data.results
 
-          $results.forEach(function(elem){
+     $results.forEach(function(elem){
 
                // creates a list of platforms     
-               function listPlat(){
-                   var platArr = [];
-                    for(let i = 0; i < JSON.stringify(elem.platforms.length); i++){
-                        platArr.push(elem.platforms[i].platform.name);
-                        }
-                        platArr = platArr.join(' | ')
-                        return platArr;
+     function listPlat(){
+          var platArr = [];
+          for(let i = 0; i < JSON.stringify(elem.platforms.length); i++){
+          platArr.push(elem.platforms[i].platform.name);
                }
+               platArr = platArr.join(' | ')
+               return platArr;
+          }
                
                //creates a list of genres
                function listGenre() {
@@ -141,9 +154,10 @@ $upcomingReleasesBtn.click(function(){
                // console.log('====== break ======')
                
                     let $container = $('<div></div>')
-                    // $container.appendTo($resultsContainer)
+                    
                     $container.attr("class","game-card")
                     $container.appendTo($resultsContainer)
+                    
                     const $heading = $("<h2 class='game-title'></h2>");
                     const $image = $("<img class='game-image'></ul>");
                     const $platHeading = $("<h3 class='platforms'>Platform(s):</h3>")
@@ -151,14 +165,13 @@ $upcomingReleasesBtn.click(function(){
                     const $genresHeading = $("<h3 class='genres'>Genre(s):</h3>")
                     const $genres = $("<text></text>")
                     const $releaseDate = $(`<text>Release Date: ${elem.released}</text>`)
-                    // const $rating = $(`<text>Rating: ${elem.rating}/ 5</text>`)
+                    
                     $heading.text(elem.name)
                     $heading.attr("href",)
                     $heading.appendTo($container)  
                     $image.attr("src", elem.background_image)
                     $image.appendTo($container)
                     $releaseDate.appendTo($container)
-                    // $rating.appendTo($container)
                     $genresHeading.appendTo($container)
                     $genres.text(listGenre())
                     $genres.appendTo($container)
